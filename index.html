@@ -84,9 +84,9 @@
         var requestDetails = document.getElementById('requestDetails').value;
         var status = document.getElementById("status");
 
-        if studentName != '' || requestType != '' || requestDetails != '':
+        if (studentName != '' || requestType != '' || requestDetails != ''){
             alert("You must fill out all fields!");
-        
+        }
         
         status.innerText = "Sending...";
         emailjs.send("service_9ighjf4", "template_ehanmxc", {

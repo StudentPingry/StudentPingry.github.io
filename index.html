@@ -1,7 +1,103 @@
 <!DOCTYPE html>
+<html lang="en">
 <head>
-  <title>Student Pingry Portal</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Request Form</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #0a192f;
+        color: #fff;
+    }
+    .container {
+        width: 400px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #0a192f;
+        color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+    }
+    h1 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    form {
+        margin-top: 20px;
+    }
+    label {
+        display: block;
+        margin-bottom: 5px;
+    }
+    input, select, textarea, button {
+        width: 100%;
+        margin-top: 5px;
+        padding: 10px;
+        border-radius: 5px;
+        border: none;
+        background-color: #172a45;
+        color: #fff;
+    }
+    button {
+        background-color: #007bff;
+        cursor: pointer;
+    }
+</style>
 </head>
 <body>
-  <h1>Student Pingry Portal</h1>
+<div class="container">
+    <img src="image.png" alt="Logo" style="width: 50px; height: 50px; margin-bottom: 20px;">
+    <h1>Submit Request</h1>
+    <form id="requestForm">
+        <label for="studentName">Student Name</label>
+        <input type="text" id="studentName" required>
+        
+        <label for="requestType">Request Type</label>
+        <select id="requestType" required>
+            <option value="">Select...</option>
+            <option value="Library Access">School Related</option>
+            <option value="Technical Support">Technical Support</option>
+            <option value="Other">Other</option>
+        </select>
+        
+        <label for="requestDetails">Request Details</label>
+        <textarea id="requestDetails" rows="4" required></textarea>
+        
+        <button type="submit">Submit Request</button>
+    </form>
+</div>
+
+<script>
+document.getElementById('requestForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    
+    const studentName = document.getElementById('studentName').value;
+    const requestType = document.getElementById('requestType').value;
+    const requestDetails = document.getElementById('requestDetails').value;
+    
+    fetch('/send-email', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ studentName, requestType, requestDetails })
+    })
+    .then(response => {
+        if (response.ok) {
+            alert('Request submitted successfully!');
+            document.getElementById('requestForm').reset();
+        } else {
+            alert('Failed to submit request. Please try again.');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('An error occurred. Please try again.');
+    });
+});
+</script>
 </body>
+</html>

@@ -78,19 +78,24 @@
     })();
     
     function submit(){
-        
+        console.log(e);
         const studentName = document.getElementById('studentName').value;
         const requestType = document.getElementById('requestType').value;
         const requestDetails = document.getElementById('requestDetails').value;
+        var status = document.getElementById("status");
+        status.innerText = "Sending"...;
+        
+        if studentName != '' || requestType != '' || requestDetails != '':
+            alert("You must fill out all fields!");
         
         emailjs.send("service_9ighjf4", "template_ehanmxc", {
             student_name: studentName,
             request_type: requestType,
             request_details: requestDetails,
             to: "johnpingry1@gmail.com"
-        })
-        .then(function(response) {
+        }).then(function(response) {
             alert('Request submitted successfully!');
+            console.log("successful");
             document.getElementById('requestForm').reset();
             status = document.getElementById('status')
             status.innerText = 'Success!';

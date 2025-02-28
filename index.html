@@ -92,10 +92,15 @@
         .then(function(response) {
             alert('Request submitted successfully!');
             document.getElementById('requestForm').reset();
-        }, function(error) {
+        },function(success) {
+            console.log('yay');
+            alert("yay");
+        },function(error) {
             console.error('Failed to submit request:', error);
             alert('Failed to submit request. Please try again.');
         });
+
+        console.log("finished sending, hopefully worked, check email");
     };
 </script>
 </body>

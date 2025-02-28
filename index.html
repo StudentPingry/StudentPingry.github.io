@@ -70,34 +70,32 @@
     </form>
 </div>
 
+<script src="https://cdn.emailjs.com/dist/email.min.js"></script>
 <script>
-document.getElementById('requestForm').addEventListener('submit', function(event) {
-    event.preventDefault();
+    (function(){
+        emailjs.init("service_9ighjf4");
+    })();
     
-    const studentName = document.getElementById('studentName').value;
-    const requestType = document.getElementById('requestType').value;
-    const requestDetails = document.getElementById('requestDetails').value;
-    
-    fetch('/send-email', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ studentName, requestType, requestDetails })
-    })
-    .then(response => {
-        if (response.ok) {
+    document.getElementById('requestForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        
+        const studentName = document.getElementById('studentName').value;
+        const requestType = document.getElementById('requestType').value;
+        const requestDetails = document.getElementById('requestDetails').value;
+        
+        emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", {
+            student_name: studentName,
+            request_type: requestType,
+            request_details: requestDetails
+        })
+        .then(function(response) {
             alert('Request submitted successfully!');
             document.getElementById('requestForm').reset();
-        } else {
+        }, function(error) {
+            console.error('Failed to submit request:', error);
             alert('Failed to submit request. Please try again.');
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        alert('An error occurred. Please try again.');
+        });
     });
-});
 </script>
 </body>
 </html>

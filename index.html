@@ -76,7 +76,6 @@
     (function(){
         emailjs.init("qt1kTxQxMJ5q4ctR3");
     })();
-    document.getElementById('sendButton').addEventListener('click', submit());
     function submit(){
         console.log(e);
         var studentName = document.getElementById('studentName').value;
@@ -113,6 +112,7 @@
         });
 
         console.log("finished sending, hopefully worked, check email");
+        document.getElementById('sendButton').addEventListener('click', submit());
     };
 </script>
 </body>

@@ -67,6 +67,7 @@
         <textarea id="requestDetails" rows="4" required></textarea>
         
         <button type="submit" onclick="submit();">Submit Request</button>
+        <div id="status"></div>
     </form>
 </div>
 
@@ -91,11 +92,17 @@
         .then(function(response) {
             alert('Request submitted successfully!');
             document.getElementById('requestForm').reset();
+            status = document.getElementById('status')
+            status.innerText = 'Success!';
         },function(success) {
             console.log('yay');
             alert("yay");
+            status = document.getElementById('status')
+            status.innerText = 'Success!';
         },function(error) {
             console.error('Failed to submit request:', error);
+            status = document.getElementById('status')
+            status.innerText = 'Something went wrong. Please try again later.';
             alert('Failed to submit request. Please try again.');
         });
 

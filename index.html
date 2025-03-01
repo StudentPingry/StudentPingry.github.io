@@ -82,8 +82,13 @@
         var requestType = document.getElementById('requestType').value;
         var requestDetails = document.getElementById('requestDetails').value;
         var status = document.getElementById("status");
+        console.log({
+            student_name: studentName,
+            request_type: requestType,
+            request_details: requestDetails
+        });
 
-        if (studentName != '' || requestType != '' || requestDetails != ''){
+        if (studentName !== '' || requestType !== '' || requestDetails !== ''){
             alert("You must fill out all fields!");
         }
         
@@ -107,7 +112,6 @@
 
         console.log("finished sending, hopefully worked, check email");
     };
-    document.getElementById('sendButton').addEventListener('click', submit());
 </script>
 </body>
 </html>

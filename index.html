@@ -66,7 +66,7 @@
         <label for="requestDetails">Request Details</label>
         <textarea id="requestDetails" rows="4" required></textarea>
         
-        <button type="submit" onclick="submit();">Submit Request</button>
+        <button type="submit" onclick="submit();" id="sendButton">Submit Request</button>
         <div id="status"></div>
     </form>
 </div>
@@ -112,8 +112,8 @@
         });
 
         console.log("finished sending, hopefully worked, check email");
-        document.getElementById('sendButton').addEventListener('click', submit());
     };
+    document.getElementById('sendButton').addEventListener('click', submit());
 </script>
 </body>
 </html>

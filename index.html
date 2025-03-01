@@ -114,7 +114,45 @@
             console.log("finished sending, hopefully worked, check email");
         }
     };
-    document.getElementById('sendButton').addEventListener('click', function(submit()));
+    document.getElementById('sendButton').addEventListener('click', 
+        if (document.getElementById('status').value !== ''){
+            console.log("e");
+            var studentName = document.getElementById('studentName').value;
+            var requestType = document.getElementById('requestType').value;
+            var requestDetails = document.getElementById('requestDetails').value;
+            var status = document.getElementById("status");
+            console.log({
+                student_name: studentName,
+                request_type: requestType,
+                request_details: requestDetails
+            });
+    
+            if (studentName !== '' || requestType !== '' || requestDetails !== ''){
+                alert("You must fill out all fields!");
+            }
+            
+            status.innerText = "Sending...";
+            emailjs.send("service_9ighjf4", "template_ehanmxc", {
+                student_name: studentName,
+                request_type: requestType,
+                request_details: requestDetails
+            })
+            .then(function(success) {
+                console.log('Yay');
+                alert("Request submitted successfully!");
+                status = document.getElementById('status')
+                status.innerText = 'Success!';
+            },function(error) {
+                console.error('Failed to submit request:', error);
+                status = document.getElementById('status')
+                status.innerText = 'Something went wrong. Please try again later.';
+                alert('Failed to submit request. Please try again.');
+            });
+    
+            console.log("finished sending, hopefully worked, check email");
+        }
+                                                          
+    );
 </script>
 </body>
 </html>

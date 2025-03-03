@@ -114,7 +114,8 @@
             console.log("finished sending, hopefully worked, check email");
         }
     };
-    document.getElementById('sendButton').addEventListener('click', submit(false));
+    document.getElementById('sendButton').addEventListener('click', submit());
+    document.getElementById('status').innerText = 'Loading...';
 </script>
 </body>
 </html>

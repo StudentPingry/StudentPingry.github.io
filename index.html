@@ -76,7 +76,8 @@
     (function(){
         emailjs.init("qt1kTxQxMJ5q4ctR3");
     })();
-    function submit(fakeout){
+    function submit(){
+        console.log(document.getElementById('status').innerText);
         if (document.getElementById('status').innerText){
             console.log("e");
             var studentName = document.getElementById('studentName').value;

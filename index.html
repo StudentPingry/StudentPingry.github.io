@@ -66,9 +66,10 @@
         <label for="requestDetails">Request Details</label>
         <textarea id="requestDetails" rows="4" required></textarea>
         
-        <button type="submit" onclick="submit();" id="sendButton">Submit Request</button>
-        <div id="status"></div>
+        <button onclick="submit();" id="sendButton">Submit Request</button>
     </form>
+    
+    <div id="status"></div>
 </div>
 
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
@@ -114,6 +115,9 @@
             });
     
             console.log("finished sending, hopefully worked, check email");
+            document.getElementById('studentName').value = '';
+            document.getElementById('requestType').value = '';
+            document.getElementById('requestDetails').value = '';
         }
     };
     document.getElementById('sendButton').addEventListener('click', submit());
